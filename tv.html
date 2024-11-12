@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Televisor Retro con Múltiples Videos</title>
+    <style>
+        /* Estilos del contenedor principal */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilos del televisor retro */
+        .tv-container {
+            display: none; /* Ocultamos el televisor inicialmente */
+            width: 600px;
+            height: 400px;
+            background-color: #000;
+            border: 20px solid #333;
+            border-radius: 15px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Estilos de la pantalla del televisor */
+        .tv-screen {
+            width: 90%;
+            height: 70%;
+            background-color: #111;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        /* Estilos para el iframe del video */
+        .tv-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Controles de botones */
+        .tv-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .tv-button {
+            width: 40px;
+            height: 40px;
+            background-color: yellow;
+            border-radius: 50%;
+            margin: 0 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: #333;
+            transition: transform 0.2s;
+        }
+
+        .tv-button:hover {
+            transform: scale(1.2);
+        }
+
+        /* Estilos de la pantalla de acceso */
+        .access-screen {
+            text-align: center;
+            color: white;
+        }
+
+        .access-input {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .access-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            background-color: yellow;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Pantalla de acceso -->
+<div class="access-screen">
+    <h2>Ingrese la clave de acceso para oyente Realness:</h2>
+    <input type="password" id="access-code" class="access-input" placeholder="Clave de acceso">
+    <button onclick="checkAccess()" class="access-button">Acceder</button>
+</div>
+
+<!-- Televisor retro -->
+<div class="tv-container" id="tv-container">
+    <div class="tv-screen">
+        <!-- Iframe que muestra el video -->
+        <iframe id="tv-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    </div>
+    <div class="tv-controls">
+        <!-- Botones para cambiar el video con números dentro -->
+        <div class="tv-button" onclick="changeVideo(1)">1</div>
+        <div class="tv-button" onclick="changeVideo(2)">2</div>
+        <div class="tv-button" onclick="changeVideo(3)">3</div>
+        <div class="tv-button" onclick="changeVideo(4)">4</div>
+        <div class="tv-button" onclick="changeVideo(5)">5</div>
+    </div>
+</div>
+
+<script>
+    // URLs de los videos de YouTube
+    const videos = [
+        "https://www.youtube.com/embed/dQw4w9WgXcQ", // Video 1
+        "https://www.youtube.com/embed/3JZ_D3ELwOQ", // Video 2
+        "https://www.youtube.com/embed/L_jWHffIx5E", // Video 3
+        "https://www.youtube.com/embed/eYq7WapuDLU", // Video 4
+        "https://www.youtube.com/embed/tgbNymZ7vqY"  // Video 5
+    ];
+
+    // Clave de acceso
+    const correctAccessCode = "apreciacionreal";
+
+    // Función para verificar la clave de acceso
+    function checkAccess() {
+        const inputCode = document.getElementById("access-code").value;
+        if (inputCode === correctAccessCode) {
+            document.querySelector(".access-screen").style.display = "none";
+            document.getElementById("tv-container").style.display = "block";
+        } else {
+            alert("Clave incorrecta. Intente nuevamente.");
+        }
+    }
+
+    // Función para cambiar el video en el iframe
+    function changeVideo(videoIndex) {
+        document.getElementById("tv-video").src = videos[videoIndex - 1];
+    }
+</script>
+
+</body>
+</html>
