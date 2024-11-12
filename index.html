@@ -135,6 +135,20 @@
         "https://www.youtube.com/embed/T-JgsLGvWDk"  // Video 5
     ];
 
+         // Arreglo con múltiples claves de acceso permitidas
+        const validAccessCodes = ["p.real", "clave1", "clave2", "clave3", "clave4", "clave5", "clave6", "clave7", "clave8", "clave9", "clave10", "clave11", "clave12", "clave13", "clave14", "clave15", "clave16", "clave17", "clave18", "clave19", "clave20"];
+
+        // Función para verificar la clave de acceso
+        function checkAccess() {
+            const inputCode = document.getElementById("access-code").value;
+            if (validAccessCodes.includes(inputCode)) { // Verifica si el código ingresado está en el arreglo
+                document.querySelector(".access-screen").style.display = "none";
+                document.getElementById("tv-container").style.display = "block";
+            } else {
+                alert("Clave incorrecta. Intente nuevamente.");
+            }
+        }
+/*
     // Clave de acceso
     const correctAccessCode = "p.real";
 
@@ -153,6 +167,7 @@
     function changeVideo(videoIndex) {
         document.getElementById("tv-video").src = videos[videoIndex - 1];
     }
+ */
 </script>
 
 </body>
