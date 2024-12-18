@@ -18,7 +18,6 @@
 
         /* Estilos del televisor retro */
         .tv-container {
-            display: none; /* Ocultamos el televisor inicialmente */
             width: 600px;
             height: 400px;
             background-color: #000;
@@ -74,43 +73,12 @@
         .tv-button:hover {
             transform: scale(1.2);
         }
-
-        /* Estilos de la pantalla de acceso */
-        .access-screen {
-            text-align: center;
-            color: white;
-        }
-
-        .access-input {
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .access-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-top: 10px;
-            background-color: yellow;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        
     </style>
 </head>
 <body>
 
-<!-- Pantalla de acceso -->
-<div class="access-screen">
-    <h2>Ingrese la clave de acceso para oyente Realness:</h2>
-    <input type="password" id="access-code" class="access-input" placeholder="Clave de acceso">
-    <button onclick="checkAccess()" class="access-button">Acceder</button>
-</div> 
-
 <!-- Televisor retro -->
-<div class="tv-container" id="tv-container">
+<div class="tv-container">
     <div class="tv-screen">
         <!-- Iframe que muestra el video -->
         <iframe id="tv-video" src="https://player.vimeo.com/video/1029281171?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" allowfullscreen></iframe>
@@ -126,7 +94,7 @@
 </div>
 
 <script>
-    // URLs de los videos de YouTube
+    // URLs de los videos de Vimeo
     const videos = [
         "https://player.vimeo.com/video/1029281171?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479", // Video 1
         "https://player.vimeo.com/video/1029276956?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479", // Video 2
@@ -135,25 +103,10 @@
         "https://player.vimeo.com/video/983165395?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" // Video 5
     ];
 
-         // Arreglo con múltiples claves de acceso permitidas
-        const validAccessCodes = ["p.real", "gblues", "clave2", "clave3", "clave4", "clave5", "clave6", "clave7", "clave8", "clave9", "clave10", "clave11", "clave12", "clave13", "clave14", "clave15", "clave16", "clave17", "clave18", "clave19", "clave20"];
-
-        // Función para verificar la clave de acceso
-        function checkAccess() {
-            const inputCode = document.getElementById("access-code").value;
-            if (validAccessCodes.includes(inputCode)) { // Verifica si el código ingresado está en el arreglo
-                document.querySelector(".access-screen").style.display = "none";
-                document.getElementById("tv-container").style.display = "block";
-            } else {
-                alert("Clave incorrecta. Intente nuevamente.");
-            }
-        }
-    
     // Función para cambiar el video en el iframe
     function changeVideo(videoIndex) {
         document.getElementById("tv-video").src = videos[videoIndex - 1];
     }
- 
 </script>
 
 </body>
