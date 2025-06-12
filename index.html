@@ -1,113 +1,173 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Televisor Retro con Múltiples Videos</title>
+    <title>Iframe with Stylish Play, Stop, and Position Buttons</title>
     <style>
-        /* Estilos del contenedor principal */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        html, body {
             margin: 0;
-            background-color: #333;  
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        body {
             font-family: Arial, sans-serif;
+            background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20240104/pngtree-luxurious-gold-glitter-cloud-a-burst-of-shining-particle-explosion-image_13881744.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-
-        /* Estilos del televisor retro */
-        .tv-container {
-            width: 600px;
-            height: 400px;
-            background-color: #000;
-            border: 20px solid #333;
-            border-radius: 15px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+        .iframe-container {
             position: relative;
+            width: 100%;
+            max-width: 90%;
+            height: auto;
+            padding-top: 56.25%; /* Aspect ratio 16:9 */
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background */
             overflow: hidden;
+            margin-bottom: 20px;
         }
-
-        /* Estilos de la pantalla del televisor */
-        .tv-screen {
-            width: 90%;
-            height: 70%;
-            background-color: #111;
-            border-radius: 10px;
-            margin: 20px auto;
-            overflow: hidden;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
-            position: relative;
-        }
-
-        /* Estilos para el iframe del video */
-        .tv-screen iframe {
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            border: 0;
+            opacity: 0.5; /* Cambia este valor para ajustar la opacidad */
+        }
+        #buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 90%;
+        }
+        #buttons button {
+            padding: 10px 20px;
             border: none;
-        }
-
-        /* Controles de botones */
-        .tv-controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
-        }
-
-        .tv-button {
-            width: 40px;
-            height: 40px;
-            background-color: #ba9021;
-            border-radius: 50%;
-            margin: 0 10px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-size: 14px;
             font-weight: bold;
-            color: #333;
-            transition: transform 0.2s;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
         }
-
-        .tv-button:hover {
-            transform: scale(1.2);
+        #buttons button:hover {
+            transform: scale(1.05);
+        }
+        #play-button {
+            background-color: green;
+            color: white;
+        }
+        #stop-button {
+            background-color: red;
+            color: white;
+        }
+        .position-button {
+            background-color: goldenrod;
+            color: brown;
+        }
+        .instagram-button {
+            background-color: #24448dbf;
+            color: white;
+        }
+        @media (max-width: 600px) {
+            #buttons button {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>
 <body>
-
-<!-- Televisor retro -->
-<div class="tv-container">
-    <div class="tv-screen">
-        <!-- Iframe que muestra el video -->
-        <iframe id="tv-video" src="https://player.vimeo.com/video/1029281171?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" allowfullscreen></iframe>
+    <div class="iframe-container">
+        <iframe id="video-iframe" src="https://www.youtube.com/embed/ROkOUS-7u2M?enablejsapi=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
-    <div class="tv-controls">
-        <!-- Botones para cambiar el video con números dentro -->
-        <div class="tv-button" onclick="changeVideo(1)">1</div>
-        <div class="tv-button" onclick="changeVideo(2)">2</div>
-        <div class="tv-button" onclick="changeVideo(3)">3</div>
-        <div class="tv-button" onclick="changeVideo(4)">4</div>
-        <div class="tv-button" onclick="changeVideo(5)">5</div>
+    <div id="buttons">
+        <button id="play-button">PLAY</button>
+        <button id="stop-button">Stop</button>
+        <button id="song1-button" class="position-button">01 - Intropy</button>
+        <button id="song2-button" class="position-button">02 - All wise</button>
+        <button id="song3-button" class="position-button">03 - Días Errantes ft TIVA</button>
+        <button id="song4-button" class="position-button">04 - Origamis aka Celuloides</button>
+        <button id="song5-button" class="position-button">05 - Midnight coffee ft TIVA & Chino Ns</button>
+        <button id="insta1-button" class="instagram-button">EMEKA URU</button>
+        <button id="insta2-button" class="instagram-button">BARFLY MN</button>
+        <button id="insta3-button" class="instagram-button">DBO GBLUE$</button>
     </div>
-</div>
+    <script defer src="https://cdn.commento.io/js/commento.js"></script>
+    <div id="commento"></div>
+    <script>
+        var videoSources = {
+            'song1-button': 'https://www.youtube.com/embed/ROkOUS-7u2M?enablejsapi=1',
+            'song2-button': 'https://www.youtube.com/embed/uTsSXtSMJxc?enablejsapi=1',
+            'song3-button': 'https://www.youtube.com/embed/7V_xUsyUphU?enablejsapi=1',
+            'song4-button': 'https://www.youtube.com/embed/uTsSXtSMJxc?enablejsapi=1',
+            'song5-button': 'https://www.youtube.com/embed/T-JgsLGvWDk?enablejsapi=1'
+        };
 
-<script>
-    // URLs de los videos de Vimeo
-    const videos = [
-        "https://player.vimeo.com/video/1029281171?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479", // Video 1
-        "https://player.vimeo.com/video/1029276956?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479", // Video 2
-        "https://player.vimeo.com/video/1017229411?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479", // Video 3
-        "https://player.vimeo.com/video/983165395?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479", // Video 4
-        "https://player.vimeo.com/video/1041153366?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" // Video 5
-    ];
+        document.getElementById('play-button').addEventListener('click', function() {
+            var iframe = document.getElementById('video-iframe');
+            var iframeSrc = iframe.src;
+            if (iframeSrc.indexOf('autoplay=1') === -1) {
+                iframe.src += (iframeSrc.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1';
+            }
+        });
 
-    // Función para cambiar el video en el iframe
-    function changeVideo(videoIndex) {
-        document.getElementById("tv-video").src = videos[videoIndex - 1];
-    }
-</script>
+        document.getElementById('stop-button').addEventListener('click', function() {
+            var iframe = document.getElementById('video-iframe');
+            var originalSrc = iframe.src.split('?')[0] + "?enablejsapi=1"; // Ensure enablejsapi=1 is present
+            iframe.src = ''; // Detener el video cargando una URL vacía
+            iframe.src = originalSrc; // Recargar el video original
+        });
 
+        function changeVideo(buttonId) {
+            var iframe = document.getElementById('video-iframe');
+            iframe.src = videoSources[buttonId] + "&autoplay=1";
+        }
+
+        document.getElementById('song1-button').addEventListener('click', function() {
+            changeVideo('song1-button');
+        });
+
+        document.getElementById('song2-button').addEventListener('click', function() {
+            changeVideo('song2-button');
+        });
+
+        document.getElementById('song3-button').addEventListener('click', function() {
+            changeVideo('song3-button');
+        });
+
+        document.getElementById('song4-button').addEventListener('click', function() {
+            changeVideo('song4-button');
+        });
+
+        document.getElementById('song5-button').addEventListener('click', function() {
+            changeVideo('song5-button');
+        });
+
+        function redirectToInstagram(url) {
+            window.open(url, '_blank');
+        }
+
+        document.getElementById('insta1-button').addEventListener('click', function() {
+            redirectToInstagram('https://www.instagram.com/emeka_uru/');
+        });
+
+        document.getElementById('insta2-button').addEventListener('click', function() {
+            redirectToInstagram('https://www.instagram.com/barfly_mn/');
+        });
+
+        document.getElementById('insta3-button').addEventListener('click', function() {
+            redirectToInstagram('https://www.instagram.com/dbo_gblues/');
+        });
+    </script>
 </body>
 </html>
